@@ -3,6 +3,7 @@
 
 namespace League\OAuth2\Client\Grant;
 
+require __DIR__ . '/vendor/autoload.php';
 
 class FbAuthorizationCode
 {
@@ -14,7 +15,7 @@ session_start();
 $provider = new \League\OAuth2\Client\Provider\Facebook([
             'clientId' => '2445341199071325',
             'clientSecret' => 'a575a8461be4643a6908a28c71738654',
-            'redirectUri'       => 'https://example.com/callback-url',
+            'redirectUri'       => 'https://localhost:8080/ouath2_client_social_login/callback.php',
             'graphApiVersion'   => 'v2.10',
 ]);
 
@@ -22,7 +23,7 @@ if (!isset($_GET['code'])) {
 
     // If we don't have an authorization code then get one
     $authUrl = $provider->getAuthorizationUrl([
-        'scope' => ['email', '...', '...'],
+        'scope' => ['email', 'firstName', 'lastName'],
     ]);
     $_SESSION['oauth2state'] = $provider->getState();
 
