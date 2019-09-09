@@ -9,8 +9,14 @@ switch($request_method)
 			if(!empty($_GET["id"]))
 			{
 				$id=intval($_GET["id"]);
+				$owner=intval($_GET["owner"]);
+                $from=intval($_GET["from"]);
+                $to=intval($_GET["to"]);
 
-				get_offers($id);
+
+
+
+				get_offers($id,$owner,$from,$to);
 			}
 			else
 			{
@@ -43,10 +49,21 @@ switch($request_method)
 
 // HTTP GET METHODS
 
-function get_offers()
+function get_offers($id,$owner,$from,$to)
 {
+  if ($_GET["id"] || $_GET["owner"] || $_GET["from"] || $_GET["to"]) {
+        echo "ID: " . $_GET['id'] . "<br />";
+        echo "owner: " . $_GET['owner'];
+        echo "from: " . $_GET['from'];
+        echo "to: " . $_GET['to'];
+
+        exit();
+
+    }
+
 
 }
+
 
 
 
