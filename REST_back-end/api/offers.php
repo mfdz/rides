@@ -53,9 +53,9 @@ function get_offers($id,$owner,$from,$to)
 {
   if ($_GET["id"] || $_GET["owner"] || $_GET["from"] || $_GET["to"]) {
         echo "ID: " . $_GET['id'] . "<br />";
-        echo "owner: " . $_GET['owner'];
-        echo "from: " . $_GET['from'];
-        echo "to: " . $_GET['to'];
+        echo "owner: " . $_GET['owner'] . "<br />";
+        echo "from: " . $_GET['from'] . "<br />";
+        echo "to: " . $_GET['to'] . "<br />";
 
         exit();
 
