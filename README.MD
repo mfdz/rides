@@ -4,6 +4,11 @@
 
 PHP 7.3
 
+## Tests
+
+The tests subfolder has lla the tests we want to run against the project.
+As of now it has tests for the CRUD backend API.
+
 ## Kirby
 - not used atm maybe later
 

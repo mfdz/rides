@@ -15,36 +15,64 @@ import requests, json, difflib
 # It is also used to define the attributes of rides, searches, etc.
 # 
 #%% 
-baseurl="http://localhost:8080/api/"
+baseurl = "http://localhost:8080/api/"
+ridePath = "ride/" 
+offerPath = "offer/"
+prefPath = "pref/"
 
-#%% [markodwn]
+#%% [markdown]
 # Attriubtes of a ride object
-# id: id: --> int
-# owner: the owner of the object --> final will  be the id of the user that owns it
-# from: self-explanatory
-# to: self-explanatory
-# recurring: shows if this is a one time or a recurring / repeating offer.
+# - id: id: --> int
+# - owner: the owner of the object --> final will  be the id of the user that owns it
+# - from: self-explanatory
+# - to: self-explanatory
+# - recurring: shows if this is a one time or a recurring / repeating offer.
 #   --> [int]
-#   Definition:
-#       [0] --> not recurring, thus one-time offer, If zero is not the first element it is then ignored.
-#       [<int between 1-6>] --> indicates the nth day(s) of week the ride occurs.
-#       if zero is the first element then x>0 elements are ignored and ride is treated as one-time ride.
-#           First day of the week is Monday.
-#           Examples:
-#               [1,2,4] --> ride occurs every Monday, Tuesday, and Thursday
-#               [1,2,3,4,5] --> ride happens every Mon, Tue, Wed, Thu, and Fri
-#               [0, 2, 4] --> 2nd and 3rd element ignored, treated as one time ride
-#               [1, 3, 0] --> 0 is ignored, ride happens on every Mon, Wed. 
-# timeestamp: --> long, unix like timestamp
-#   Definition: for one-time trips the exact time and date the ride happens,
-#               for recurring trips only the time (hour, minute) part is used
-#               and the date will be inferred from the recurring attribute.
-#%%
-ride1={"id": 1, "owner": "mfdz", "from": "Musberg", "to": "Stuttgart",
-    "recurring": [0], "timestamp": 123456}
+#   - Definition:
+#     - [0] --> not recurring, thus one-time offer, If zero is not the first element it is then ignored.
+#     - [<int between 1-6>] --> indicates the nth day(s) of week the ride occurs.
+#     - if zero is the first element then x>0 elements are ignored and ride is treated as one-time ride.
+#     - First day of the week is Monday.
+#     - Examples:
+#       - [1,2,4] --> ride occurs every Monday, Tuesday, and Thursday
+#       - [1,2,3,4,5] --> ride happens every Mon, Tue, Wed, Thu, and Fri
+#       - [0, 2, 4] --> 2nd and 3rd element ignored, treated as one time ride
+#       - [1, 3, 0] --> 0 is ignored, ride happens on every Mon, Wed. 
+# - timeestamp: --> long, unix like timestamp
+#   - Definition: for one-time trips the exact time and date the ride happens,
+#     for recurring trips only the time (hour, minute) part is used
+#     and the date will be inferred from the recurring attribute.
 
-ride2={"id": 2, "owner": "mfdz", "from": "Stuttgart", "to": "Musberg",
-    "recurring": , "timestamp": 654321}
-rides={"rides":[ride1, ride2]}
-testResponse1=json.dumps(rides)
-testResponse1
+#%%
+expectedRide1 = json.dumps( { "id": 1, "owner": "mfdz", "from": "Musberg", "to": "Stuttgart" } )
+expectedRide2 = json.dumps( { "id": 2, "owner": "mfdz", "from": "Stuttgart", "to": "Musberg" } )
+expectTest1 = json.dumps( {"rides":[expectedRide1, expectedRide2]} )
+
+print( expectedRide1 )
+print( expectedRide2 )
+print( expectTest1 )
+#ride1={"id": 1, "owner": "mfdz", "from": "Musberg", "to": "Stuttgart",
+#    "recurring": [0], "timestamp": 123456}
+#ride2={"id": 2, "owner": "mfdz", "from": "Stuttgart", "to": "Musberg",
+#    "recurring": , "timestamp": 654321}
+
+#%% [markdown]
+# we get all rides in the first test
+
+#%%
+try:
+    test1Response = requests.get(baseurl+ridePath)
+except: 
+    print( "exception occured")
+    test1Response= {}
+finally:
+    print( test1Response )
+    print( expectTest1)
+
+
+# this is only here to see how the requests module work until we have a funtonal API.
+# r= requests.get('https://api.github.com/events')
+#r.json()
+
+
+
