@@ -73,7 +73,7 @@ function get_offers($id)
         */
 
         foreach ($array_two as $x => $x_value){
-            echo "ID_one: " . $x ." : " . $x_value;
+            echo "ID_two: " . $x ." : " . $x_value;
             echo "<br>";
         }
 
