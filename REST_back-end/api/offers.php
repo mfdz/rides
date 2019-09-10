@@ -9,14 +9,12 @@ switch($request_method)
 			if(!empty($_GET["id"]))
 			{
 				$id=intval($_GET["id"]);
-				$owner=intval($_GET["owner"]);
-                $from=intval($_GET["from"]);
-                $to=intval($_GET["to"]);
 
 
 
 
-				get_offers($id,$owner,$from,$to);
+
+				get_offers($id);
 			}
 			else
 			{
@@ -49,18 +47,24 @@ switch($request_method)
 
 // HTTP GET METHODS
 
-function get_offers($id,$owner,$from,$to)
+function get_offers($id)
 {
-  if ($_GET["id"] || $_GET["owner"] || $_GET["from"] || $_GET["to"]) {
-        echo "ID: " . $_GET['id'] . "<br />";
-        echo "owner: " . $_GET['owner'] . "<br />";
-        echo "from: " . $_GET['from'] . "<br />";
-        echo "to: " . $_GET['to'] . "<br />";
+  if ($_GET["id"]) {
 
-        exit();
+    $id = array("owner"=>"mfdz", "from"=>"Musberg", "to"=>"Stuttgart");
+    $id = array("owner"=>"mfdz", "from"=>"Stuttgart", "to"=>"Musberg");
+
+        echo "ID: " . $_GET['id'] ."<br />";
+        echo "owner: " . $id['owner'] . "<br />";
+        echo "from: " . $id['from'] . "<br />";
+        echo "to: " . $id['to'] . "<br />";
+
+         var_dump($id);
+
+
+    exit();
 
     }
-
 
 }
 
