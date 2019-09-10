@@ -11,9 +11,6 @@ switch($request_method)
 				$id=intval($_GET["id"]);
 
 
-
-
-
 				get_offers($id);
 			}
 			else
@@ -24,7 +21,13 @@ switch($request_method)
 
     case 'POST':
                 // Insert Product
-                insert_offers();
+                if(!empty($_POST["id"] || $_POST["owner"] || $_POST["from"] || $_POST["to"])) {
+                    $id=intval($_POST["id"]);
+                    $owner=intval($_POST["owner"]);
+                    $from=intval($_POST["from"]);
+                    $to=intval($_POST["to"]);
+                    insert_offers($id,$owner,$from,$to);
+                }
             break;
 
     case 'PUT':
@@ -50,6 +53,9 @@ switch($request_method)
 function get_offers($id)
 {
   if ($_GET["id"] == 1) {
+      if (preg_match("/[^0-9-]/",$_GET['id'] )) {
+          die ("invalid ID should be number");
+      }
 
       $_GET["id"] = $array = ["owner" => "mfdz",
           "from" => "Musberg",
@@ -78,11 +84,14 @@ function get_offers($id)
         }
 
 
+
       print_r($array_two);
 
     exit();
 
-    }
+    }else{
+      echo "invald ID ";
+  }
 
 }
 
@@ -92,6 +101,18 @@ function get_offers($id)
 //HTTP POST METHODS
 function insert_offers()
 {
+    if( $_POST["id"] || $_POST["owner"] || $_POST["from"] || $_POST["to"]   ) {
+        if (preg_match("/[^0-9-]/",$_POST['id'] )) {
+            die ("invalid ID should be number");
+        }
+
+        echo "ID: " . $_POST['id'] . "<br />";
+        echo "owner: " . $_POST['owner'] . "<br />";
+        echo "from: " . $_POST['from'] . "<br />";
+        echo "to: " . $_POST['to'] . "<br />";
+
+        exit();
+    }
 
 }
 
