@@ -51,8 +51,8 @@ function get_offers($id)
 {
   if ($_GET["id"]) {
 
-    $id = array("owner"=>"mfdz", "from"=>"Musberg", "to"=>"Stuttgart");
-    $id = array("owner"=>"mfdz", "from"=>"Stuttgart", "to"=>"Musberg");
+    $_GET["id"] = array("owner"=>"mfdz", "from"=>"Musberg", "to"=>"Stuttgart");
+      $_GET["id"] = array("owner"=>"mfdz", "from"=>"Stuttgart", "to"=>"Musberg");
 
         echo "ID: " . $_GET['id'] ."<br />";
         echo "owner: " . $id['owner'] . "<br />";
