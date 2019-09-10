@@ -49,18 +49,36 @@ switch($request_method)
 
 function get_offers($id)
 {
-  if ($_GET["id"]) {
+  if ($_GET["id"] == 1) {
 
-    $_GET["id"] = array("owner"=>"mfdz", "from"=>"Musberg", "to"=>"Stuttgart");
-      $_GET["id"] = array("owner"=>"mfdz", "from"=>"Stuttgart", "to"=>"Musberg");
+      $_GET["id"] = $array = ["owner" => "mfdz",
+          "from" => "Musberg",
+          "to" => "Stuttgart"];
+      foreach ($array as $x => $x_value){
+          echo "ID_one: " . $x ." : " . $x_value;
+          echo "<br>";
+      }
+      print_r($array);
 
+  }elseif ($_GET["id"] == 2){
+
+      $_GET["id"] = $array_two = ["owner" => "mfdz",
+          "from" => "Stuttgart",
+          "to" => "Musberg"];
+        /*
         echo "ID: " . $_GET['id'] ."<br />";
-        echo "owner: " . $id['owner'] . "<br />";
-        echo "from: " . $id['from'] . "<br />";
-        echo "to: " . $id['to'] . "<br />";
+        echo "owner: " . $id_one['owner'] . "<br />";
+        echo "from: " . $id_one['from'] . "<br />";
+        echo "to: " . $id_one['to'] . "<br />";
+        */
 
-         var_dump($id);
+        foreach ($array_two as $x => $x_value){
+            echo "ID_one: " . $x ." : " . $x_value;
+            echo "<br>";
+        }
 
+
+      print_r($array_two);
 
     exit();
 
