@@ -5,7 +5,7 @@ $request_method=$_SERVER["REQUEST_METHOD"];
 switch($request_method)
 	{
 	case 'GET':
-			// Retrive Products
+			// Retrive Offers
 			if(!empty($_GET["id"]))
 			{
 
@@ -23,26 +23,19 @@ switch($request_method)
     case 'POST':
                // Itt a $_GET az nem a GET POST PUT meg feleloje hanem egy PHP fuggveny ami valtozokat ker el nev alapjan a HTTP keresbol. Az eredeti peldaban midnenutt ezt hasznaltak.
                // A PUT-ban meg a DELETE-ben sem irtak $_DELETE-t meg $_PUT-ot.....
-                if(!empty($_POST["id"] || $_POST["owner"] || $_POST["from"] || $_POST["to"])) {
-                    $id=intval($_POST["id"]);
-                    $owner=intval($_POST["owner"]);
-                    $from=intval($_POST["from"]);
-                    $to=intval($_POST["to"]);
-                    insert_offers($id,$owner,$from,$to);
-                }
+
+                    insert_offers();
+
             break;
 
     case 'PUT':
-                // Update Product
+                // Update Offers
                 $id=intval($_GET["id"]);
-                $owner=intval($_POST["owner"]);
-                $from=intval($_POST["from"]);
-                $to=intval($_POST["to"]);
                 update_offers($id);
             break;
 
     case 'DELETE':
-                // Delete Product
+                // Delete Offers
                 $id=intval($_GET["id"]);
                 delete_offers($id);
             break;
@@ -58,54 +51,59 @@ switch($request_method)
 function get_offers($id)
 {
     // a fuggvenynek, metodusnak nevezzuk akarhogy, mar atadod az $id valtozot. Tok felesleges es nem is helyes a $_GET["id"] hasnzalni mert mar atadjuk a fuggvenyhivaskor.active
-  if ($_GET["id"] == 1) {
+  if ($id != 0) {
       // ez jo otlet, lehetne mashogy is de jo otlet.
-      if (preg_match("/[^0-9-]/",$_GET['id'] )) {
+      if (preg_match("/[^0-9-]/",$id )) {
           die ("invalid ID should be number");
       }
     // teljes felreertelmezese a dolgoknak. A $_GET["id"] egy konkret ertek ad vissza amit egyenlove akarsz tenni masvalamivel.
-    // ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel. 
-      $_GET["id"] = $array = ["owner" => "mfdz",
-          "from" => "Musberg",
-          "to" => "Stuttgart"];
-      foreach ($array as $x => $x_value){
-          echo "ID_one: " . $x ." : " . $x_value;
-          echo "<br>";
-      }
+    // ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
 
-      var_dump(
-          $array,
-          json_encode($array)
+      $offers_id = array(
+          array(
+              "id" => "1",
+              "owner" => "mfdz",
+              "from" => "Musberg",
+              "to" => "Stuttgart",
+          ),
+          array(
+              "id" => "2",
+              "owner" => "mfdz",
+              "from" => "Stuttgart",
+              "to" => "Musberg",
+          ),
+          array(
+              "id" => "3",
+              "owner" => "Roland",
+              "from" => "Kecskemet",
+              "to" => "Szeged",
+          )
+
       );
 
-  }elseif ($_GET["id"] == 2){
-// lasd elozo kommentem
-      $_GET["id"] = $array_two = ["owner" => "mfdz",
-          "from" => "Stuttgart",
-          "to" => "Musberg"];
-        /*
-        echo "ID: " . $_GET['id'] ."<br />";
-        echo "owner: " . $id_one['owner'] . "<br />";
-        echo "from: " . $id_one['from'] . "<br />";
-        echo "to: " . $id_one['to'] . "<br />";
-        */
+      // Using for and foreach in nested form
+        $keys = array_keys($offers_id);
 
-        foreach ($array_two as $x => $x_value){
-            echo "ID_two: " . $x ." : " . $x_value;
-            echo "<br>";
+        for($i = 0; $i < count($offers_id); $i++) {
+
+            echo $keys[$i] . "{<br>";
+
+            foreach($offers_id[$keys[$i]] as $key => $value) {
+
+                echo $key . " : " . $value . "<br>";
+
+            }
+
+            echo "}<br>";
+
         }
 
 
 
-
-      var_dump(
-          $array_two,
-          json_encode($array_two)
-      );
-
-    exit();
+      exit();
 
     }else{
+
       echo "invalid ID ";
   }
 
@@ -126,6 +124,7 @@ function insert_offers()
         }
 
 
+
         echo "ID: " . $_POST['id'] . "<br />";
         echo "owner: " . $_POST['owner'] . "<br />";
         echo "from: " . $_POST['from'] . "<br />";
@@ -141,26 +140,7 @@ function insert_offers()
 
 function update_offers($id)
 {
-    if ($_GET["id"] == 6 ){
-        $id = array(
-            array("id" =>"6","owner" =>"Oliver","from" =>"Szeged","to" =>"Pest"),
-            array("id" =>"7","owner" =>"mike","from" =>"kecskemet","to" =>"kerekdomb"),
-            array("id" =>"6","owner" =>"Oliver","from" =>"Szeged","to" =>"Pest"),
-            array("id" =>"6","owner" =>"Oliver","from" =>"Szeged","to" =>"Pest"),
 
-        );
-
-        echo $id[0][0].": ID: ".$id[0][1].", sold: ".$id[0][2].".<br>";
-        echo $id[1][0].": ID: ".$id[1][1].", sold: ".$id[1][2].".<br>";
-        echo $id[2][0].": ID: ".$id[2][1].", sold: ".$id[2][2].".<br>";
-        echo $id[3][0].": ID: ".$id[3][1].", sold: ".$id[3][2].".<br>";
-
-
-
-
-
-
-    }
 
 
 
