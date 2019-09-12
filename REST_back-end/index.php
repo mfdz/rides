@@ -10,7 +10,7 @@
     <input type = "submit" />
 </form>
 
-
+<!--
 <p>The POST Method </p>
 <form action = "api/offers.php" method = "POST">
     ID: <input type = "text" name = "id" />
@@ -32,3 +32,20 @@
 
     </body>
 </html>
+//>
+
+
+<?php
+
+
+$id = array(    "1" => "Roli",
+                "2" => "Adam" ,
+                "3" => "Peter",
+                "4" => "Oliver"
+                                );
+
+
+echo"Array number 0:   {$id['1']}<br />";
+
+var_dump($id);
+
