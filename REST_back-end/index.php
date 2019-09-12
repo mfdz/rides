@@ -10,7 +10,7 @@
     <input type = "submit" />
 </form>
 
-<!--
+
 <p>The POST Method </p>
 <form action = "api/offers.php" method = "POST">
     ID: <input type = "text" name = "id" />
@@ -20,6 +20,10 @@
     <input type = "submit" />
 </form>
 
+
+
+
+<!--
 <p>The PUT Method </p>
 
 <form action = "api/offers.php" method = "GET">

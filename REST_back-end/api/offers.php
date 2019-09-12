@@ -59,7 +59,10 @@ function get_offers($id)
     // teljes felreertelmezese a dolgoknak. A $_GET["id"] egy konkret ertek ad vissza amit egyenlove akarsz tenni masvalamivel.
     // ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
 
-      $offers_id = array(
+
+
+
+          $offers_id = array(
           array(
               "id" => "1",
               "owner" => "mfdz",
@@ -116,22 +119,20 @@ function get_offers($id)
 //a 30. sorban parameterekkel van meghivva a fuggveny. Ez itt egy parameterek nelkuli fuggveny implementacio. ebben a formaban sosem lesz meghivva.
 function insert_offers()
 {
-    // lasd a get offers($id)=nel levo kommentemet. a jo megoldas az hogy atadjuk a fuggvenynek a parametereket es azokat hasznaljuk
 
-    if( $_POST["id"] || $_POST["owner"] || $_POST["from"] || $_POST["to"]   ) {
-        if (preg_match("/[^0-9-]/",$_POST['id'] )) {
-            die ("invalid ID should be number");
-        }
+        $offers_id = $_POST['id'];
+        $offers_owner = $_POST['owner'];
+        $offers_from = $_POST['from'];
+        $offers_to = $_POST['to'];
 
+        echo "ID: " . $offers_id . "<br />";
+        echo "owner: " . $offers_owner . "<br />";
+        echo "from: " . $offers_from . "<br />";
+        echo "to: " . $offers_to. "<br />";
 
-
-        echo "ID: " . $_POST['id'] . "<br />";
-        echo "owner: " . $_POST['owner'] . "<br />";
-        echo "from: " . $_POST['from'] . "<br />";
-        echo "to: " . $_POST['to'] . "<br />";
 
         exit();
-    }
+
 
 }
 
