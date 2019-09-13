@@ -84,6 +84,7 @@ function get_offers($id)
 
       );
 
+
       // Using for and foreach in nested form
         $keys = array_keys($offers_id);
 
@@ -96,6 +97,7 @@ function get_offers($id)
                 echo $key . " : " . $value . "<br>";
 
             }
+
 
             echo "}<br>";
 

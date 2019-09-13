@@ -23,10 +23,10 @@
 
 
 
-<!--
+
 <p>The PUT Method </p>
 
-<form action = "api/offers.php" method = "GET">
+<form action = "api/ride.php" method = "GET">
     ID: <input type = "text" name = "id" />
     Owner: <input type = "text" name = "owner" />
     From: <input type = "text" name = "from" />
@@ -39,17 +39,5 @@
 //>
 
 
-<?php
 
-
-$id = array(    "1" => "Roli",
-                "2" => "Adam" ,
-                "3" => "Peter",
-                "4" => "Oliver"
-                                );
-
-
-echo"Array number 0:   {$id['1']}<br />";
-
-var_dump($id);
 

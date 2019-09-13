@@ -1,11 +1,63 @@
 <?php
 
+global $offers_id;
+$offers_id =  array(
+    array(
+        "id" => "1",
+        "owner" => "mfdz",
+        "from" => "Musberg",
+        "to" => "Stuttgart",
+    ),
+    array(
+        "id" => "2",
+        "owner" => "mfdz",
+        "from" => "Stuttgart",
+        "to" => "Musberg",
+    ),
+    array(
+        "id" => "3",
+        "owner" => "Roland",
+        "from" => "Kecskemet",
+        "to" => "Szeged",
+    )
+);
+/*
+function global_array_function()
+{
+    $offers_id = " ";
+
+    // Using for and foreach in nested form
+    $keys = array_keys($offers_id);
+
+    for($i = 0; $i < count($offers_id); $i++) {
+
+        echo $keys[$i] . "{<br>";
+
+        foreach($offers_id[$keys[$i]] as $key => $value) {
+
+            echo $key . " : " . $value . "<br>";
+
+        }
+
+        echo "}<br>";
+
+    }
+    echo "JSON Object: " . json_encode($offers_id, JSON_FORCE_OBJECT). "<br>";
+
+   echo " <br>" ."simple array: :".  print_r($offers_id) . "<br>";
+
+}
+
+*/
+
+
+
 $request_method=$_SERVER["REQUEST_METHOD"];
 
 switch($request_method)
 	{
 	case 'GET':
-			// Retrive Offers
+
 			if(!empty($_GET["id"]))
 			{
 
@@ -21,28 +73,31 @@ switch($request_method)
 			break;
 
     case 'POST':
-               // Itt a $_GET az nem a GET POST PUT meg feleloje hanem egy PHP fuggveny ami valtozokat ker el nev alapjan a HTTP keresbol. Az eredeti peldaban midnenutt ezt hasznaltak.
-               // A PUT-ban meg a DELETE-ben sem irtak $_DELETE-t meg $_PUT-ot.....
+
 
                     insert_offers();
 
             break;
 
     case 'PUT':
-                // Update Offers
+
                 $id=intval($_GET["id"]);
+                $owner = intval($_POST['owner']);
+                $from = intval($_POST['from']);
+                $to = intval($_POST['to']);
+
                 update_offers($id);
             break;
 
     case 'DELETE':
-                // Delete Offers
+
                 $id=intval($_GET["id"]);
                 delete_offers($id);
             break;
 
             default:
-			// Invalid Request Method
-			header("HTTP/1.0 405 Method Not Allowed"i/offers.php?id=1
+
+                header("HTTP/1.0 405 Method Not Allowed");
 			break;
 	}
 
@@ -50,80 +105,61 @@ switch($request_method)
 
 function get_offers($id)
 {
-    // a fuggvenynek, metodusnak nevezzuk akarhogy, i/offers.php?id=1atadod az $id valtozot. Tok felesleges es nem is helyes a $_GET["id"] hasnzalni mert mar atadjuk a fuggvenyhivaskor.active
+// Task:   //have to iterate through the array and look at the Id
+            // working progress
+
   if ($id != 0) {
-      // ez jo otlet, lehetne mashogy is de jo otlet.
       if (preg_match("/[^0-9-]/",$id )) {
           die ("invalid ID should be number");
       }
-    // teljes felreertelmezese a dolgoknak. A $_GET["id"] egy konkret ertek ad vissza amit egyenlove akarsz tenni masvalamivel.
-    // ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
 
+      $response_arr ="";
+      $ids = array_keys($response_arr);
 
+      if($id == 1) {
+          for ($i = 0; $i < count($response_arr); $i++) {
 
+              echo $ids[$i] . "{<br>";
 
-          $offers_id = array(
-          array(
-              "id" => "1",
-              "owner" => "mfdz",
-              "from" => "Musberg",
-              "to" => "Stuttgart",
-          ),
-          array(
-              "id" => "2",
-              "owner" => "mfdz",
-              "from" => "Stuttgart",
-              "to" => "Musberg",
-          ),
-          array(
-              "id" => "3",
-              "owner" => "Roland",
-              "from" => "Kecskemet",
-              "to" => "Szeged",
-          )
+              foreach ($response_arr[$ids[$i]] as $ids => $value) {
 
-      );
+                  echo $ids . " : " . $value . "<br>";
 
-      // Using for and foreach in nested form
-        $keys = array_keys($offers_id);
+              }
 
-        for($i = 0; $i < count($offers_id); $i++) {
+              echo "}<br>";
 
-            echo $keys[$i] . "{<br>";
+          }
 
-            foreach($offers_id[$keys[$i]] as $key => $value) {
-
-                echo $key . " : " . $value . "<br>";
-
-            }
-
-            echo "}<br>";
-
-        }
-
-
+      }
 
       exit();
 
     }else{
+      echo global_array_function();
 
-      echo "invalid ID ";
+
+
+
+
   }
 
 }
 
 
-
-
-//HTTP POST METHODS
-//a 30. sorban parameterekkel van meghivva a fuggveny. Ez itt egy parameterek nelkuli fuggveny implementacio. ebben a formaban sosem lesz meghivva.
 function insert_offers()
 {
 
-        $offers_id = $_POST['id'];
-        $offers_owner = $_POST['owner'];
-        $offers_from = $_POST['from'];
-        $offers_to = $_POST['to'];
+        global $offers_id;
+
+
+
+        $offers_id = $offers_id["id"];
+        $offers_owner = $offers_id["owner"];
+        $offers_from = $offers_id["from"];;
+        $offers_to = $offers_id["to"];
+
+
 
         echo "ID: " . $offers_id . "<br />";
         echo "owner: " . $offers_owner . "<br />";
@@ -143,6 +179,18 @@ function update_offers($id)
 {
 
 
+    $id = $_POST['id'];
+    $offers_owner = $_POST['owner'];
+    $offers_from = $_POST['from'];
+    $offers_to = $_POST['to'];
+
+    echo "ID: " . $id . "<br />";
+    echo "owner: " . $offers_owner . "<br />";
+    echo "from: " . $offers_from . "<br />";
+    echo "to: " . $offers_to. "<br />";
+
+
+
 
 
 
@@ -152,5 +200,10 @@ function update_offers($id)
 
 function delete_offers($id)
 {
+
+   // global $offers_id;
+
+
+
 
 }
