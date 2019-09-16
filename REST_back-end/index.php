@@ -1,4 +1,5 @@
-
+//Ennek a fajlnak a feljelsztes jelenelg nem celszeru. Az API GET-resze egyszeruen tesztelheto bongeszobol, a toobire ott van
+//a Postman nevu alkalmazas. Kerlek hasznald azt.
 <html>
     <body>
 <h2>Implement basic REST back-end</h2>

@@ -1,7 +1,9 @@
 <?php
 
 global $offers_id;
-
+//Ez a nev a valtozonak teljesen felrevezeto. Egyreszt ez a ride.php ergo offers itt furcsan nez ki. Masreszt nem az id-ket tarolod, hanem a konkret rideoklat.
+//Altalanossagban: ertem hogy atmasoltad a kodot a masik file-bol de a valtozok, fuggvenyekket at kell nevezni. A jo kod beszedes es elmondja hogy mi tortenik
+//Ezert kellenek jo valtozo es fuggvenynevek. A ride.php-ben offeres nevekkel talalkozni megteveszto.
 $offers_id = [
     ["id" => 1,"owner" => "mfdz","from" => "Musberg","to" => "Stuttgart"],
     ["id" => 2,"owner" => "mfdz","from" => "Musberg","to" => "Stuttgart"],
@@ -88,14 +90,14 @@ switch($request_method)
 function get_offers($id)
 {
 // Task:   //have to iterate through the array and look at the Id
-
+// fuggvenyben global valtozo?
     global $arrayObject;
 
   if ($id > 0) {
       if (preg_match("/[^0-9-]/",$id )) {
           die ("invalid ID should be number");
       }
-
+            // ezzel mit szeretnel elerni?
           function searchForId($id, $arrayObject)
           {
               foreach ($arrayObject as $key => $val) {
@@ -110,7 +112,9 @@ function get_offers($id)
           }
       switch ($id){
           case 1:
+          //ennek semmi ertelme, egy tomb elemeit siman az index-el el lehet kerni
               $id = searchForId('1', $arrayObject);
+              //valahogy igy kell indexelni egy tombot.
               var_dump(json_encode($arrayObject[0]));
               break;
           case 2:

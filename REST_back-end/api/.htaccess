@@ -4,3 +4,4 @@ RewriteRule ^offers/?$ offers.php [NC,L]
 RewriteRule ^offers/([0-9]+)/?$ offers.php?id=$1 [NC,L]
 RewriteRule ^searches/?$ searches.php [NC,L]
 RewriteRule ^searches/([0-9]+)/?$ searches.php?id=$1 [NC,L]
+// hianyzik a ride-ra a rewrite rule
