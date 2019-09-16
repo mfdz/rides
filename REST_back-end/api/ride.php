@@ -81,7 +81,7 @@ switch($request_method)
 // HTTP GET METHODS
 
 
-// ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
+
 
 function get_offers($id)
 {
