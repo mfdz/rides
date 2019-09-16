@@ -61,50 +61,6 @@ function get_offers($id)
 
 
 
-
-          $offers_id = array(
-          array(
-              "id" => "1",
-              "owner" => "mfdz",
-              "from" => "Musberg",
-              "to" => "Stuttgart",
-          ),
-          array(
-              "id" => "2",
-              "owner" => "mfdz",
-              "from" => "Stuttgart",
-              "to" => "Musberg",
-          ),
-          array(
-              "id" => "3",
-              "owner" => "Roland",
-              "from" => "Kecskemet",
-              "to" => "Szeged",
-          )
-
-      );
-
-
-      // Using for and foreach in nested form
-        $keys = array_keys($offers_id);
-
-        for($i = 0; $i < count($offers_id); $i++) {
-
-            echo $keys[$i] . "{<br>";
-
-            foreach($offers_id[$keys[$i]] as $key => $value) {
-
-                echo $key . " : " . $value . "<br>";
-
-            }
-
-
-            echo "}<br>";
-
-        }
-
-
-
       exit();
 
     }else{
