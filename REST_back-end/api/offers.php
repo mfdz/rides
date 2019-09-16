@@ -50,14 +50,13 @@ switch($request_method)
 
 function get_offers($id)
 {
-    // a fuggvenynek, metodusnak nevezzuk akarhogy, mar atadod az $id valtozot. Tok felesleges es nem is helyes a $_GET["id"] hasnzalni mert mar atadjuk a fuggvenyhivaskor.active
+
   if ($id != 0) {
       // ez jo otlet, lehetne mashogy is de jo otlet.
       if (preg_match("/[^0-9-]/",$id )) {
           die ("invalid ID should be number");
       }
-    // teljes felreertelmezese a dolgoknak. A $_GET["id"] egy konkret ertek ad vissza amit egyenlove akarsz tenni masvalamivel.
-    // ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
+
 
 
 

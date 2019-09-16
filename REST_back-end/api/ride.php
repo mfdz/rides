@@ -9,17 +9,16 @@ $offers_id = [
     ["id" => 4,"owner" => "nandor","from" => "Budapest","to" => "Pecs"],
 ];
 
-function print_offersArray($offers_id){
+$arrayObject = new ArrayObject($offers_id);
+
+function print_offersArray($arrayObject){
 
     echo "<pre>";
-//var_dump(json_encode($offers_id[0]));
-//var_dump(json_encode($offers_id[1]));
-//var_dump(json_encode($offers_id[2]));
-//var_dump($offers_id);
-    $keys = array_keys($offers_id);
-    for($i = 0;$i < count($offers_id);$i++){
+
+    $keys = array_keys((array)$arrayObject);
+    for($i = 0;$i < count($arrayObject);$i++){
         echo $keys[$i] . "\n";
-        foreach($offers_id[$keys[$i]] as $key => $value) {
+        foreach($arrayObject[$keys[$i]] as $key => $value) {
             echo $key . " : " . $value . "\n";
         }
         echo "\n";
@@ -81,21 +80,72 @@ switch($request_method)
 
 // HTTP GET METHODS
 
+
+// ide valamilyen valtozot kell tenned es azt inicializalni valamilyen ertekkel.
+
 function get_offers($id)
 {
 // Task:   //have to iterate through the array and look at the Id
-            // working progress
-  if ($id != 0) {
+
+    global $arrayObject;
+
+  if ($id > 0) {
       if (preg_match("/[^0-9-]/",$id )) {
           die ("invalid ID should be number");
       }
+
+          function searchForId($id, $arrayObject)
+          {
+              foreach ($arrayObject as $key => $val) {
+                  if ($val['id'] == $id) {
+                      return $key;
+                  }
+              }
+
+              return $id;
+
+
+          }
+      switch ($id){
+          case 1:
+              $id = searchForId('1', $arrayObject);
+              var_dump(json_encode($arrayObject[0]));
+              break;
+          case 2:
+              $id = searchForId('2', $arrayObject);
+              var_dump(json_encode($arrayObject[1]));
+              break;
+          case 3:
+              $id = searchForId('3', $arrayObject);
+              var_dump(json_encode($arrayObject[2]));
+              break;
+          case 4:
+              $id = searchForId('4', $arrayObject);
+              var_dump(json_encode($arrayObject[3]));
+              break;
+          default:
+
+              echo "<pre>";
+              $keys = array_keys((array)$arrayObject);
+              for($i = 0;$i < count($arrayObject);$i++){
+                  echo $keys[$i] . "\n";
+                  foreach($arrayObject[$keys[$i]] as $key => $value) {
+                      echo $key . " : " . $value . "\n";
+                  }
+                  echo "\n";
+              }
+              echo "</pre>";
+
+
+      }
+
+
 
 
       exit();
 
     }else{
         get_offers();
-        print_offersArray();
 
   }
 
