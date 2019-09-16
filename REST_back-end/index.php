@@ -77,7 +77,6 @@ $arrayObject = new ArrayObject($offers_id);
 //
 ////string(57) "{"id":1,"owner":"mfdz","from":"Musberg","to":"Stuttgart"}"
 ////expectedRide1 = json.dumps( { "id": 1, "owner": "mfdz", "from": "Musberg", "to": "Stuttgart" } )
-////var_dump($number_arr[0]["gyumolcsok"][1], $number_arr[0]["zoldsegek"][2],$number_arr[0]["szamitogepek"][1]);
 ////
 //
 //

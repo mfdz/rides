@@ -6,8 +6,10 @@ $offers_id = [
     ["id" => 1,"owner" => "mfdz","from" => "Musberg","to" => "Stuttgart"],
     ["id" => 2,"owner" => "mfdz","from" => "Musberg","to" => "Stuttgart"],
     ["id" => 3,"owner" => "roland","from" => "Kecskemet","to" => "Szeged"],
-    ["id" => 4,"owner" => "nandor","from" => "Budapest","to" => "Pecs"],
+    ["id" => 4,"owner" => "nandor","from" => "Budapest","to" => "Pecs"]
 ];
+
+
 
 $arrayObject = new ArrayObject($offers_id);
 
@@ -147,6 +149,7 @@ function get_offers($id)
     }else{
         get_offers();
 
+
   }
 
 }
@@ -155,21 +158,22 @@ function get_offers($id)
 function insert_offers()
 {
 
-        global $offers_id;
+        global $arrayObject;
 
 
 
-        $offers_id = $offers_id["id"];
-        $offers_owner = $offers_id["owner"];
-        $offers_from = $offers_id["from"];;
-        $offers_to = $offers_id["to"];
+
+       $arrayObject["id"];
+       $arrayObject["owner"];
+        $arrayObject["from"];;
+        $arrayObject["to"];
 
 
-
-        echo "ID: " . $offers_id . "<br />";
-        echo "owner: " . $offers_owner . "<br />";
-        echo "from: " . $offers_from . "<br />";
-        echo "to: " . $offers_to. "<br />";
+//
+//        echo "ID: " . $offers_id . "<br />";
+//        echo "owner: " . $offers_owner . "<br />";
+//        echo "from: " . $offers_from . "<br />";
+//        echo "to: " . $offers_to. "<br />";
 
 
         exit();
