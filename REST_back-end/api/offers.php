@@ -50,22 +50,21 @@ switch($request_method)
 
 function get_offers($id)
 {
+//    global $rides_array;
+//    if (is_numeric($id)) {
+//        for ($i = 0; $i < count($rides_array); $i++){
+//            $ride = $rides_array[$i];
+//            // var_dump($rides_array[$i]);
+//            if($ride["id"] ==$id){
+//                return $ride;
+//            }
+//
+//        }
+//        return "no ride for given id:" . $id;
+//
+//    }
 
-  if ($id != 0) {
-      // ez jo otlet, lehetne mashogy is de jo otlet.
-      if (preg_match("/[^0-9-]/",$id )) {
-          die ("invalid ID should be number");
-      }
 
-
-
-
-      exit();
-
-    }else{
-
-      echo "invalid ID ";
-  }
 
 }
 
